@@ -4,11 +4,7 @@
 package org.gpie3k.cron.parser
 
 class App {
-    String getGreeting() {
-        return 'Hello world.'
-    }
-
     static void main(String[] args) {
-        println new App().greeting
+        println new Output().format(Parser.parse(args[0]))
     }
 }
