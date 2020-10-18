@@ -1,12 +1,14 @@
-package org.gpie3k.cron.parser
+package org.gpie3k.cron.parser.field
 
+import org.gpie3k.cron.parser.field.NumberFieldParser
+import org.gpie3k.cron.parser.model.Data
 import spock.lang.Specification
 import spock.lang.Unroll
 
 class NumberFieldParserTest extends Specification {
     def parser = new NumberFieldParser()
 
-    def data = Mock(FieldData)
+    def data = Mock(Data)
 
     @Unroll
     def "should parse number"() {

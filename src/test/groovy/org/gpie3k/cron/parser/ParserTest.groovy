@@ -1,5 +1,6 @@
 package org.gpie3k.cron.parser
 
+import org.gpie3k.cron.parser.model.Result
 import spock.lang.Specification
 
 class ParserTest extends Specification {

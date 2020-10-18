@@ -3,6 +3,8 @@
  */
 package org.gpie3k.cron.parser
 
+import org.gpie3k.cron.parser.output.Output
+
 class App {
     static void main(String[] args) {
         println new Output().format(Parser.parse(args[0]))

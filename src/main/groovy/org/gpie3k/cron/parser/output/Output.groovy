@@ -1,4 +1,7 @@
-package org.gpie3k.cron.parser
+package org.gpie3k.cron.parser.output
+
+import org.gpie3k.cron.parser.model.Data
+import org.gpie3k.cron.parser.model.Result
 
 import java.lang.reflect.Field
 
@@ -8,11 +11,11 @@ class Output {
     }
 
     static boolean isField(Field field) {
-        field.getAnnotation(FieldData) != null
+        field.getAnnotation(Data) != null
     }
 
     static String format(Result result, Field it) {
-        def field = it.getAnnotation(FieldData)
+        def field = it.getAnnotation(Data)
         def value = Arrays.asList(result[it.name])
 
         "${field.text()} ${value.join(' ')}"

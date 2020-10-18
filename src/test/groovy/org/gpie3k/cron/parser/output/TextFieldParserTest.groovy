@@ -1,5 +1,6 @@
-package org.gpie3k.cron.parser
+package org.gpie3k.cron.parser.output
 
+import org.gpie3k.cron.parser.field.TextFieldParser
 import spock.lang.Specification
 import spock.lang.Unroll
 
