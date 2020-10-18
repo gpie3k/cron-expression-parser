@@ -13,7 +13,7 @@ class NumberFieldParser implements FieldParser {
     def parse(FieldData data, String input) {
         rules.find({
             input ==~ it.key
-        })?.value?.parse(data, input)?.findAll(NumberFieldParser.&validate)?.sort() ?: [] as int[]
+        })?.value?.parse(data, input)?.findAll(NumberFieldParser.&validate.curry(data))?.sort() ?: [] as int[]
     }
 
     static validate(FieldData data, int input) {

@@ -10,6 +10,6 @@ class ParserTest extends Specification {
 
         where:
         req               | res
-        '0 0 0 0 0 /exec' | new Result(minute: [0], hour: [0], day: [0], month: [0], dayOfWeek: [0], command: '/exec')
+        '0 0 1 1 1 /exec' | new Result(minute: [0], hour: [0], day: [1], month: [1], dayOfWeek: [1], command: '/exec')
     }
 }
