@@ -12,7 +12,10 @@ import java.lang.annotation.Target
 @Target(ElementType.FIELD)
 @interface Data {
     String text()
+
     int min() default 0
+
     int max() default 0
+
     Class<? extends FieldParser> parser() default NumberFieldParser
 }

@@ -5,9 +5,9 @@ import org.gpie3k.cron.parser.model.Data
 class NumberFieldParser implements FieldParser {
 
     def rules = [
-            '^[0-9]+(,[0-9]+)*$': NumberFieldParser.&parseValues as FieldParser,
-            '^\\*$': NumberFieldParser.&parseAsteriks as FieldParser,
-            '^[0-9]+-[0-9]+$': NumberFieldParser.&parseRange as FieldParser,
+            '^[0-9]+(,[0-9]+)*$'   : NumberFieldParser.&parseValues as FieldParser,
+            '^\\*$'                : NumberFieldParser.&parseAsteriks as FieldParser,
+            '^[0-9]+-[0-9]+$'      : NumberFieldParser.&parseRange as FieldParser,
             '^(\\*|[0-9]+)/[0-9]+$': NumberFieldParser.&parseEvery as FieldParser,
     ]
 
@@ -41,7 +41,7 @@ class NumberFieldParser implements FieldParser {
         def strings = input.split('/')
         def first = strings.first() == '*' ? 0 : Integer.parseInt(strings.first())
         def last = Integer.parseInt(strings.last())
-        (data.min()..data.max()).findAll({it % last == first})
+        (data.min()..data.max()).findAll({ it % last == first })
     }
 
 }
