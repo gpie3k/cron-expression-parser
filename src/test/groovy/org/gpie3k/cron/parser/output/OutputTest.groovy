@@ -16,7 +16,7 @@ class OutputTest extends Specification {
         res == out
 
         where:
-        result                                                                                    | out
-        new Result(minute: [0], hour: [0], day: [1], month: [1], dayOfWeek: [1], command: "test") | 'minute        0\nhour          0\nday of month  1\nmonth         1\nday of week   1\ncommand       test'
+        result                                                                                       | out
+        new Result(minute: [1], hour: [2], day: [3], month: [4], dayOfWeek: [5, 6], command: "test") | 'minute        1\nhour          2\nday of month  3\nmonth         4\nday of week   5 6\ncommand       test'
     }
 }
