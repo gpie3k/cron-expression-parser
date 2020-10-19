@@ -5,12 +5,11 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 class OutputTest extends Specification {
-    def output = new Output()
 
     @Unroll
     def "should format result"() {
         when:
-        def res = output.format(result)
+        def res = Output.format(result)
 
         then:
         res == out
