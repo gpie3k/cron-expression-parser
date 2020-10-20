@@ -8,7 +8,7 @@ class NumberValidatorTest extends Specification {
     def data = Mock(Data)
 
     @Unroll
-    def "should validate number"() {
+    def "should validate number #req"() {
         given:
         data.min() >> 4
         data.max() >> 8
@@ -18,9 +18,23 @@ class NumberValidatorTest extends Specification {
 
         where:
         req | res
-        3   | false
         4   | true
         8   | true
-        9   | false
+    }
+
+    @Unroll
+    def "should validate invalid number #req"() {
+        given:
+        data.min() >> 4
+        data.max() >> 8
+
+        when:
+        NumberValidator.validate(data, req)
+
+        then:
+        thrown(Exception)
+
+        where:
+        req << [3, 9]
     }
 }

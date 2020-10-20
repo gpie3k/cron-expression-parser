@@ -13,9 +13,14 @@ class NumberFieldParser implements FieldParser {
 
     @Override
     def parse(Data data, String input) {
+        def validate = NumberValidator.&validate.curry(data)
         rules.find({
             input ==~ it.key
-        })?.value?.parse(data, input)?.findAll(NumberValidator.&validate.curry(data))?.sort() ?: [] as int[]
+        })?.value?.parse(data, input)?.findAll(validate)?.sort() ?: invalidInput(input)
+    }
+
+    static invalidInput(String input) {
+        throw new RuntimeException("Invalid input: ${input}")
     }
 
     static int[] parseValues(Data data, String input) {
@@ -27,10 +32,10 @@ class NumberFieldParser implements FieldParser {
     }
 
     static int[] parseRange(Data data, String input) {
-        def strings = input.split('-').sort()
+        def strings = input.split('-')
         def first = Integer.parseInt(strings.first())
         def last = Integer.parseInt(strings.last())
-        first..last
+        first <= last ? first..last : invalidInput(input)
     }
 
     static int[] parseEvery(Data data, String input) {
