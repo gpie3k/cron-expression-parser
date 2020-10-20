@@ -15,11 +15,7 @@ class NumberFieldParser implements FieldParser {
     def parse(Data data, String input) {
         rules.find({
             input ==~ it.key
-        })?.value?.parse(data, input)?.findAll(NumberFieldParser.&validate.curry(data))?.sort() ?: [] as int[]
-    }
-
-    static validate(Data data, int input) {
-        input in data.min()..data.max()
+        })?.value?.parse(data, input)?.findAll(NumberValidator.&validate.curry(data))?.sort() ?: [] as int[]
     }
 
     static int[] parseValues(Data data, String input) {

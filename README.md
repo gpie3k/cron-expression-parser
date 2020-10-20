@@ -33,7 +33,7 @@ Build tools
 gradle build
 ```
 
-Distribution package is created in:
+Distribution package is created in folder:
 ```
 ./build/distributions
 ```

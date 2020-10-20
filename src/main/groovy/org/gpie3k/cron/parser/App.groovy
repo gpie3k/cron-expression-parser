@@ -7,6 +7,10 @@ import org.gpie3k.cron.parser.output.Output
 
 class App {
     static void main(String[] args) {
-        println Output.format(Parser.parse(args[0]))
+        try {
+            println Output.format(Parser.parse(args[0]))
+        } catch (Exception e) {
+            println "ERROR: ${e}"
+        }
     }
 }
