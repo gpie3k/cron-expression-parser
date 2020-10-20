@@ -1,5 +1,8 @@
 # cron-expression-parser
 
+Command line application which parses a cron string and expands each field
+to show the times at which it will run.
+
 ## Prerequisites
 
 Install sdkman (recommended for installing gradle and java)
@@ -23,7 +26,13 @@ E.x.:
 
 ```
 cd cron-experession-parser
-./bin/cron-expression-parser "0 0 1 1 1 /cmd"
+❯ ./bin/cron-expression-parser "*/15 0 1,15 * 1-5 /usr/bin/find"
+minute        0 15 30 45
+hour          0
+day of month  1 15
+month         1 2 3 4 5 6 7 8 9 10 11 12
+day of week   1 2 3 4 5
+command       /usr/bin/find
 ```
 
 ## Development
