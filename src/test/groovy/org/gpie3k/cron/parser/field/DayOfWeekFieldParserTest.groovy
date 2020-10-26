@@ -16,7 +16,7 @@ class DayOfWeekFieldParserTest extends Specification {
         data.max() >> 5
 
         expect:
-        parser.parse(data, req) == res as int[]
+        parser.parse(data, req) == res
 
         where:
         req       | res
@@ -28,6 +28,7 @@ class DayOfWeekFieldParserTest extends Specification {
         '1/3'     | [1, 4]
         'WED'     | [3]
         'TUE-WED' | [2, 3]
+        'FRI-TUE' | [0, 1, 2, 5]
     }
 
     @Unroll

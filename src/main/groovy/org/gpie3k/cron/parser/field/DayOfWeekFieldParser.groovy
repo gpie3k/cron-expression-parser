@@ -56,6 +56,6 @@ class DayOfWeekFieldParser implements FieldParser {
         def strings = input.split('-')
         def first = DAYS.valueOf(strings.first()).value
         def last = DAYS.valueOf(strings.last()).value
-        first <= last ? first..last : invalidInput(input)
+        first <= last ? first..last : (first..data.max()) + (data.min()..last)
     }
 }
