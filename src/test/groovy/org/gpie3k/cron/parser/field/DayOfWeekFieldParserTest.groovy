@@ -19,13 +19,15 @@ class DayOfWeekFieldParserTest extends Specification {
         parser.parse(data, req) == res as int[]
 
         where:
-        req   | res
-        '1'   | [1]
-        '3,1' | [1, 3]
-        '*'   | 0..5
-        '1-2' | [1, 2]
-        '*/2' | [0, 2, 4]
-        '1/3' | [1, 4]
+        req       | res
+        '1'       | [1]
+        '3,1'     | [1, 3]
+        '*'       | 0..5
+        '1-2'     | [1, 2]
+        '*/2'     | [0, 2, 4]
+        '1/3'     | [1, 4]
+        'WED'     | [3]
+        'TUE-WED' | [2, 3]
     }
 
     @Unroll

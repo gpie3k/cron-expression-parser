@@ -1,5 +1,6 @@
 package org.gpie3k.cron.parser.field
 
+import org.gpie3k.cron.parser.model.DAYS
 import org.gpie3k.cron.parser.model.Data
 
 class DayOfWeekFieldParser implements FieldParser {
@@ -9,6 +10,8 @@ class DayOfWeekFieldParser implements FieldParser {
             '^\\*$'                : DayOfWeekFieldParser.&parseAsteriks as FieldParser,
             '^[0-9]+-[0-9]+$'      : DayOfWeekFieldParser.&parseRange as FieldParser,
             '^(\\*|[0-9]+)/[0-9]+$': DayOfWeekFieldParser.&parseEvery as FieldParser,
+            '^(MON|TUE|WED|THR|FRI|SAT|SUN)$': DayOfWeekFieldParser.&parseDayName as FieldParser,
+            '^(MON|TUE|WED|THR|FRI|SAT|SUN)-(MON|TUE|WED|THR|FRI|SAT|SUN)$': DayOfWeekFieldParser.&parseDayNameRange as FieldParser,
     ]
 
     @Override
@@ -45,4 +48,14 @@ class DayOfWeekFieldParser implements FieldParser {
         (data.min()..data.max()).findAll({ it % last == first })
     }
 
+    static int[] parseDayName(Data data, String input) {
+        [DAYS.valueOf(input).value]
+    }
+
+    static int[] parseDayNameRange(Data data, String input) {
+        def strings = input.split('-')
+        def first = DAYS.valueOf(strings.first()).value
+        def last = DAYS.valueOf(strings.last()).value
+        first <= last ? first..last : invalidInput(input)
+    }
 }
